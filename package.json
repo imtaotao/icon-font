@@ -1,0 +1,14 @@
+{
+  "name": "@rustle/icon-font",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "dev index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "font-carrier": "^0.1.0"
+  }
+}

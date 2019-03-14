@@ -1,0 +1,38 @@
+<?xml version="1.0" standalone="no"?>
+  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+  <svg>
+  <metadata>
+  Created by font-carrier
+  </metadata>
+  <defs>
+  <font id="iconfont" horiz-adv-x="1024" vert-adv-y="1024" >
+    <font-face
+      
+      font-family="iconfont"
+      
+      font-weight="400"
+      
+      font-stretch="normal"
+      
+      units-per-em="1024"
+      
+      ascent="812"
+      
+      descent="-212"
+      
+    />
+      <missing-glyph />
+
+      
+      <glyph glyph-name="x" unicode="&#x78;" horiz-adv-x="100"
+        d="M20 20 L50 20 L50 -20 Z" />
+      
+
+      
+      <glyph glyph-name="uni7F16" unicode="&#x7F16;" d="M880.288 579.52L560.192 766.88A95.648-95.648 0 0 0 463.552 766.88L143.68 579.52A96.64-96.64 0 0 0 96 496.096V98.432C96 63.648 114.624 31.552 144.736 14.432L464.736-167.488A95.52-95.52 0 0 0 559.232-167.488L879.232 14.432A96.576-96.576 0 0 0 928 98.432V496.096A96.64-96.64 0 0 0 880.288 579.52ZM864 98.432C864 86.848 857.792 76.128 847.744 70.432L527.744-111.488A31.776-31.776 0 0 1 496.256-111.488L176.256 70.432A32.192-32.192 0 0 1 160 98.432V496.096C160 507.552 166.048 518.144 175.904 523.904L495.776 711.264A31.84-31.84 0 0 1 527.968 711.264L848.096 523.872C857.952 518.144 864 507.552 864 496.096V98.432ZM512 492A192-192 0 1 0 512 108 192-192 0 0 0 512 492ZM512 172A128-128 0 1 1 512 428 128-128 0 0 1 512 172Z"  horiz-adv-x="1024" vert-adv-y="1024"  />
+
+      
+
+  </font>
+  </defs>
+</svg>

@@ -1,10 +1,13 @@
 const fs = require('fs')
 const path = require('path')
 const fontCarrier = require('font-carrier')
+const {
+  toHex,
+  toStr,
+  warn,
+  getLegalPath,
+} = require('./utils')
 
-function warn (error) {
-  throw new Error('Iconfont warn: ' + error)
-}
 
 function callHooks (hookname, data) {
   const fn = create[hookname]
@@ -24,14 +27,6 @@ function getOptions (opts) {
   opts.to = opts.to || getLegalPath(opts.from, 'fonts')
   opts.fontname = opts.fontname || 'iconfont'
   return opts
-}
-
-function getLegalPath (from, to, index = 0) {
-  let url = path.resolve(from, to)
-  index && (url += index)
-
-  if (!fs.existsSync(url)) return url
-  return getLegalPath(from, to, index + 1)
 }
 
 function getSingleFont (from, type, file) {
@@ -60,16 +55,17 @@ function getSingleFont (from, type, file) {
   })
 }
 
-function setFontInfor (font, name, options) {
-  const data = callHooks('before', {
-    name,
-    svg: options.svg,
-  })
+function setFontInfor (font, name, code, options) {
+  code = code.toString(16)
+  console.log(`${name} -- ${code}`);
+  const data = callHooks('before', name)
 
   if (data && typeof data === 'object') {
     Object.assign(options, data)
   }
-  font.setGlyph(name, options)
+
+  options.glyphName = String.fromCharCode(code)
+  font.setGlyph(code, options)
 }
 
 function create (opts) {
@@ -79,11 +75,12 @@ function create (opts) {
   fs.readdir(opts.from, (err, files) => {
     if (err) warn(err)
 
+    let baseUnitcode = 0xe090
     const arr = files.map(file => {
       return getSingleFont(opts.from, 'svg', file).then(options => {
         if (!options) return
         const {svg, name} = options
-        setFontInfor(font, name, {svg})
+        setFontInfor(font, name, baseUnitcode++, {svg})
       })
     })
 

@@ -3,30 +3,30 @@ const path = require('path')
 const { warn } = require('./utils')
 
 function fontface (fontname) {
-  return '@font-face {\n\t' +
-    `font-family: '${fontname}';\n\t` + 
-    `src: url('${fontname}.eot?bilyuv#iefix') format('embedded-opentype'),\n\t` +
-      `url('${fontname}.ttf?bilyuv') format('truetype'),\n\t` +
-      `url('${fontname}.woff?bilyuv') format('woff'),\n\t` +
-      `url('${fontname}.svg?bilyuv#${fontname}') format('svg');\n\t` +
-    'font-weight: normal;\n\t' +
+  return '@font-face {\n  ' +
+    `font-family: '${fontname}';\n  ` + 
+    `src: url('${fontname}.eot?bilyuv#iefix') format('embedded-opentype'),\n  ` +
+      `url('${fontname}.ttf?bilyuv') format('truetype'),\n  ` +
+      `url('${fontname}.woff?bilyuv') format('woff'),\n  ` +
+      `url('${fontname}.svg?bilyuv#${fontname}') format('svg');\n  ` +
+    'font-weight: normal;\n  ' +
     'font-style: normal;\n' +
   '}\n\n'
 }
 
 function common (fontname) {
-  return '[class^="icon-"], [class*=" icon-"] {\n\t' +
-    '/* use !important to prevent issues with browser extensions that change fonts */\n\t' +
-    `font-family: '${fontname}' !important;\n\t` +
-    'speak: none;\n\t' +
-    'font-style: normal;\n\t' +
-    'font-weight: normal;\n\t' +
-    'font-variant: normal;\n\t' +
-    'text-transform: none;\n\t' +
+  return '[class^="icon-"], [class*=" icon-"] {\n  ' +
+    '/* use !important to prevent issues with browser extensions that change fonts */\n  ' +
+    `font-family: '${fontname}' !important;\n  ` +
+    'speak: none;\n  ' +
+    'font-style: normal;\n  ' +
+    'font-weight: normal;\n  ' +
+    'font-variant: normal;\n  ' +
+    'text-transform: none;\n  ' +
     'line-height: 1;\n\t' +
-    '\n\t' +
-    '/* Better Font Rendering =========== */\n\t' +
-    '-webkit-font-smoothing: antialiased;\n\t' +
+    '\n  ' +
+    '/* Better Font Rendering =========== */\n  ' +
+    '-webkit-font-smoothing: antialiased;\n  ' +
     '-moz-osx-font-smoothing: grayscale;\n' +
   '}\n\n'
 }
@@ -37,14 +37,14 @@ function genSingleIcon (icon) {
     : icon.colors
 
   const colorStr = color
-    ? `\tcolor: ${color};\n`
+    ? `  color: ${color};\n`
     : ''
 
   const size = icon.size
-    ? `\tfont-size: ${icon.size};\n`
+    ? `  font-size: ${icon.size};\n`
     : ''
 
-  return `.icon-${icon.name}:before {\n\t` +
+  return `.icon-${icon.name}:before {\n  ` +
     `content: "\\${icon.code}";\n` +
     size +
     colorStr +
@@ -68,7 +68,7 @@ function createFile (text, { to, cssname }) {
 module.exports = function genCSSFile (map, opts) {
   const commonStr = common(opts.fontname)
   const fontfaceStr = fontface(opts.fontname)
-  const text = (fontfaceStr + commonStr + icons(map))
+  const text = fontfaceStr + commonStr + icons(map)
 
   createFile(text, opts)
   return text

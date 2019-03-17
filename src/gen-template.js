@@ -24,7 +24,7 @@ function genHTMLTemplate (unitText, cssText, additional) {
 
 function genUnitText (map) {
   let res = ''
-  const unit = name => `<div class="icon-${name}"></div>`
+const unit = name => `<div>${name}<p class="icon-${name}"></p></div>`
   
   map.forEach((icon, i) => {
     res += unit(icon.name) + (
@@ -40,7 +40,13 @@ function additionalStyles () {
   return 'div {\n\t' +
     'float: left;\n\t' +
     'margin: 10px;\n\t' +
+    'padding: 10px;\n\t' +
+    'font-size: 12px;\n\t' +
     'border: 1px solid #f1f1f1;\n\t' +
+  '}\n\t' +
+
+  'p {\n\t' + 
+    'margin: 10px;\n\t' +
   '}'
 }
 

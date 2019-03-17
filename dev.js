@@ -1,15 +1,16 @@
-const create = require('./src')
+const path = require('path')
+const { create, remove } = require('./src')
 
-create.createBefore = (del, done) => {
-  del().then(done)
-}
+const url = __dirname + '/icon-font'
 
 create.before = (name, clone) => {
   clone(name + '-active', {
-    size: '50px',
+    size: '51px',
     color: '#2cb8ca',
   })
-
-  return { size: '30px' }
+  return { size: '31px' }
 }
-create(__dirname + '/icon-font')
+
+remove(path.resolve(url, 'fonts')).then(() => {
+  create(url)
+})

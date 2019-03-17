@@ -75,8 +75,34 @@ function setIconAndGetInfor (font, name, unicode, opts, map) {
   }
 }
 
-function init (opts) {
+// 设置 opions
+function getOptions (opts) {
+  if (typeof opts === 'string') {
+    opts = { from: opts }
+  }
+  if (!opts || typeof opts.from !== 'string') {
+    warn('the from path must be a string.')
+  }
+
+  opts.cssname = opts.cssname || 'style.css'
+  opts.fontname = opts.fontname || 'iconfont'
+
+  if (opts.to) {
+    opts.originUrl = opts.to
+  } else {
+    Object.assign(opts, getLegalPath(opts.from, 'fonts'))
+  }
+
+  return opts
+}
+
+function create (opts) {
+  opts = getOptions(opts)
   const font = fontCarrier.create()
+  // 可以阻止生成字体
+  if (callHooks('createBefore', opts, font) === false) {
+    return
+  }
 
   fs.readdir(opts.from, (err, files) => {
     if (err) warn(err)
@@ -112,39 +138,7 @@ function init (opts) {
   })
 }
 
-// 设置 opions
-function getOptions (opts) {
-  if (typeof opts === 'string') {
-    opts = {from: opts}
-  }
-  if (!opts || typeof opts.from !== 'string') {
-    warn('the from path must be a string.')
-  }
-
-  opts.cssname = opts.cssname || 'style.css'
-  opts.fontname = opts.fontname || 'iconfont'
-
-  if (opts.to) {
-    opts.originUrl = opts.to
-  } else {
-    Object.assign(opts, getLegalPath(opts.from, 'fonts'))
-  }
-
-  return opts
+module.exports = {
+  create,
+  remove: p => deleteDir(p),
 }
-
-function create (opts) {
-  opts = getOptions(opts)
-
-  const res = callHooks(
-    'createBefore',
-    p => deleteDir(p || opts.originUrl),  // delete
-    () => init(opts) // done
-  )
-
-  if (res === null) {
-    init(opts)
-  }
-}
-
-module.exports = create

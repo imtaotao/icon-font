@@ -38,10 +38,34 @@ exports.getLegalPath = function getLegalPath (from, to, index = 0) {
   return getLegalPath(from, to, index + 1)
 }
 
-exports.deleteDir = function (_path) {
+// 删除文件夹的一些方法
+function iterator (url, dirs) {
+  const stat = fs.statSync(url)
+  if(stat.isDirectory()){
+    dirs.unshift(url)
+    inner(url, dirs)
+  } else if(stat.isFile()){
+    fs.unlinkSync(url)
+  }
+}
+
+function inner (p, dirs) {
+  const arr = fs.readdirSync(p)
+  for (const val of arr) {
+    const url = path.resolve(p, val)
+    iterator(url, dirs)
+  }
+}
+
+exports.deleteDir = function (dir) {
   return new Promise(resolve => {
-    if (!fs.existsSync(_path)) resolve()
-    console.log(_path);
+    if (!dir || !fs.existsSync(dir)) resolve()
+
+    const dirs = []
+    iterator(dir, dirs)
+    for (const val of dirs) {
+      fs.rmdirSync(val)
+    }
     resolve()
   })
 }

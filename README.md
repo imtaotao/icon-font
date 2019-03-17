@@ -5,7 +5,8 @@
 ```js
 const { create } = require('icon-font')
 
-create('./icons') // create 方法接收一个 icon 存储的路径或一个 object
+// string | object
+create('./icons') // create 方法接收一个存储 icon 原始 svg 图片的路径或是一个配置的 object
 ```
 
 ## 完整的 demo
@@ -16,7 +17,7 @@ const { create, remove } = require('icon-font')
 const url = __dirname + '/icon-font'
 const aimsUrl = path.resolve(url, 'fonts')
 
-// 生成每个 icon font 之前会调用此钩子函数，callback 接受两个参数
+// 生成每个 icon-font 之前会调用此钩子函数，接收两个参数
 // name -> 此次生成的 icon 名字
 // clone -> 可以克隆此次 icon，并设置新的信息，一般用于生成颜色不一样，但是其他信息一样的 icon
 create.before = (name, clone) => {
@@ -43,4 +44,4 @@ remove(airmUrl).then(() => {
 ```
 
 ## 目录结构
-[目录结构](https://github.com/imtaotao/icon-font/tree/master/icon-font/fonts)
+[生成文件的目录结构](https://github.com/imtaotao/icon-font/tree/master/icon-font/fonts)

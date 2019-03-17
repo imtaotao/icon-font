@@ -23,11 +23,11 @@ function genHTMLTemplate (unitText, cssText, additional) {
 
 function genUnitText (map) {
   let res = ''
-  const unit = name => `  <div>${name} <p class="icon-${name}"></p></div>\n`
+  const unit = name => `  <div>${name}<p class="icon-${name}"></p></div>\n`
   
-  map.forEach((icon, i) => {
+  for (const icon of map) {
     res += unit(icon.name)
-  })
+  }
   return res
 }
 

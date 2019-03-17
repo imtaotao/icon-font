@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const genCSSFile = require('./gen-css')
 const fontCarrier = require('font-carrier')
+const genTemplate = require('./gen-template')
 const { warn, deleteDir, getPathColor, getLegalPath } = require('./utils')
 
 // 调用钩子函数
@@ -84,14 +85,14 @@ function getOptions (opts) {
     warn('the from path must be a string.')
   }
 
+  const has = key => opts.hasOwnProperty(key)
+
   opts.cssname = opts.cssname || 'style.css'
   opts.fontname = opts.fontname || 'iconfont'
+  opts.to = opts.to || getLegalPath(opts.from, 'fonts')
 
-  if (opts.to) {
-    opts.originUrl = opts.to
-  } else {
-    Object.assign(opts, getLegalPath(opts.from, 'fonts'))
-  }
+  if (!has('demo')) opts.demo = true
+  if (!has('open')) opts.open = true
 
   return opts
 }
@@ -132,7 +133,10 @@ function create (opts) {
 
       // 生成 css 文件
       if (map.length > 0) {
-        genCSSFile(map, opts)
+        const cssText = genCSSFile(map, opts)
+        if (opts.demo) {
+          genTemplate(map, opts, cssText)
+        }
       }
     })
   })

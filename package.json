@@ -1,14 +1,24 @@
 {
   "name": "@rustle/icon-font",
   "version": "1.0.0",
-  "description": "",
+  "description": "一个生成 IconFont 的脚本",
   "main": "src/index.js",
   "scripts": {
-    "dev": "node ./dev.js"
+    "test": "node ./test.js"
   },
-  "author": "",
+  "author": "imtaotao",
   "license": "ISC",
   "dependencies": {
+    "opn": "^5.5.0",
     "font-carrier": "^0.1.0"
+  },
+  "keywords": [
+    "icon",
+    "font",
+    "icon-font"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imtaotao/icon-font.git"
   }
 }

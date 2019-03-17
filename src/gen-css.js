@@ -52,9 +52,9 @@ function genSingleIcon (icon) {
 }
 
 function icons (map) {
-  let str = ''
-  map.forEach(val => str += genSingleIcon(val))
-  return str
+  let res = ''
+  map.forEach(val => res += genSingleIcon(val))
+  return res
 }
 
 function createFile (text, { to, cssname }) {
@@ -68,7 +68,8 @@ function createFile (text, { to, cssname }) {
 module.exports = function genCSSFile (map, opts) {
   const commonStr = common(opts.fontname)
   const fontfaceStr = fontface(opts.fontname)
-  const text = fontfaceStr + commonStr + icons(map)
+  const text = (fontfaceStr + commonStr + icons(map))
 
   createFile(text, opts)
+  return text
 }

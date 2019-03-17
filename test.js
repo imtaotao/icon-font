@@ -4,7 +4,7 @@ const { create, remove } = require('./src')
 const url = __dirname + '/icon-font'
 
 create.before = (name, clone) => {
-  clone(name + '-active', {
+  clone(`${name}-active`, {
     size: '51px',
     color: '#2cb8ca',
   })

@@ -1,5 +1,5 @@
 ## 一个生成 IconFont 的脚本
-这个是一个生成 iconfont 的脚本，使用很简单，他只有两个 `api` ，`1 个钩子函数`，以及 `6 个配置项`，但是大部分情况下，你只需要两个 api 就能完成所有的工作
+这个是一个生成 iconfont 的脚本，使用很简单，他只有两个 `api` ，`1 个钩子函数`，以及 `6 个配置项`，但是大部分情况下，你只需要两个 api 就能完成所有的工作。使用时，你只需要将生成的 `css` 文件引入你的项目工程中就可以了
 
 ## 一个最简单的 demo
 ```js
@@ -41,3 +41,6 @@ remove(airmUrl).then(() => {
   })
 })
 ```
+
+## 目录结构
+[目录结构](https://github.com/imtaotao/icon-font/tree/master/icon-font/fonts)

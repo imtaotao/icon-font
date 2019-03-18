@@ -60,6 +60,9 @@ remove(airmUrl).then(() => {
   +-- style.css
 ```
 
+## 注意
+这个脚本只支持单色 svg 图片，如果一张 svg 图片有多个 path，从而有多个颜色，只会获取第一个 path 颜色作为整个图片的颜色
+
 ## 依赖
 [font-carrier](https://github.com/purplebamboo/font-carrier)
 

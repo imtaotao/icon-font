@@ -1,6 +1,6 @@
 {
   "name": "@rustle/icon-font",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "一个生成 IconFont 的脚本",
   "main": "src/index.js",
   "scripts": {

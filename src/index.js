@@ -20,7 +20,7 @@ function getSingleFont (from, type, file) {
       fs.readFile(filePath, (err, data) => {
         if (err) warn(err)
 
-        const name = path.basename(file, `.${type}`)
+        const name = path.basename(file, `.${type}`).trim()
         resolve({
           name,
           svg: data.toString(),

@@ -6,7 +6,7 @@
 
 ## 一个最简单的 demo
 ```js
-const { create } = require('icon-font')
+const { create } = require('@rustle/icon-font')
 
 // string | object
 create('./icons') // create 方法接收一个存储 icon 原始 svg 图片的路径或是一个配置的 object
@@ -15,7 +15,7 @@ create('./icons') // create 方法接收一个存储 icon 原始 svg 图片的�
 ## 完整的 demo
 ```js
 const path = require('path')
-const { create, remove } = require('icon-font')
+const { create, remove } = require('@rustle/icon-font')
 
 const url = __dirname + '/icon-font'
 const aimsUrl = path.resolve(url, 'fonts')
@@ -34,7 +34,7 @@ create.before = (name, clone, svg) => {
   return { size: '31px' }
 }
 
-// 每次先删除以及存在的文件，然后生成新的
+// 每次先删除已经存在的文件，然后生成新的
 remove(airmUrl).then(() => {
   create({
     from: url, // icon 图片存放的路径
@@ -58,3 +58,6 @@ remove(airmUrl).then(() => {
   +-- demo.html
   +-- style.css
 ```
+
+## 依赖
+[font-carrier](https://github.com/purplebamboo/font-carrier)

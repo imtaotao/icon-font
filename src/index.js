@@ -58,7 +58,7 @@ function setIconAndGetInfor (font, name, unicode, opts, map) {
 
   // clone 的情况下不调用钩子
   if (map) {
-    const data = callHooks('before', name, clone, svg)
+    const data = callHooks('before', name, clone, opts.svg)
     if (data && typeof data === 'object') {
       Object.assign(opts, data)
     }

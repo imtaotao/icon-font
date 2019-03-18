@@ -92,10 +92,6 @@ function getOptions (opts) {
 function create (opts) {
   opts = getOptions(opts)
   const font = fontCarrier.create()
-  // 可以阻止生成字体
-  if (callHooks('createBefore', opts, font) === false) {
-    return
-  }
 
   fs.readdir(opts.from, (err, files) => {
     if (err) warn(err)

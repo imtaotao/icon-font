@@ -1,5 +1,8 @@
 ## 一个生成 IconFont 的脚本
-这个是一个生成 iconfont 的脚本，使用很简单，他只有两个 `api` ，`1 个钩子函数`，以及 `6 个配置项`，但是大部分情况下，你只需要两个 api 就能完成所有的工作。使用时，你只需要将生成的 `css` 文件引入你的项目工程中就可以了
+这个是一个生成 iconfont 的脚本，使用很简单，他只有两个 `api` ，`1 个钩子函数`，以及 `6 个配置项`，但是大部分情况下，你只需要两个 api 就能完成所有的工作。使用时，你只需要将生成的 `css` 文件引入你的项目工程中就可以了，就像下面这样
+```html
+<link rel="stylesheet" href="./fonts/style.css">
+```
 
 ## 一个最简单的 demo
 ```js
@@ -17,10 +20,11 @@ const { create, remove } = require('icon-font')
 const url = __dirname + '/icon-font'
 const aimsUrl = path.resolve(url, 'fonts')
 
-// 生成每个 icon-font 之前会调用此钩子函数，接收两个参数
+// 生成每个 icon-font 之前会调用此钩子函数，接收三个参数
 // name -> 此次生成的 icon 名字
 // clone -> 可以克隆此次 icon，并设置新的信息，一般用于生成颜色不一样，但是其他信息一样的 icon
-create.before = (name, clone) => {
+// svg -> 此次生产的 icon 的原始 svg string
+create.before = (name, clone, svg) => {
   // 生成一个 active icon
   clone(`${name}-active`, {
     size: '51px', // 设置此次 icon 的大小
@@ -45,3 +49,12 @@ remove(airmUrl).then(() => {
 
 ## 目录结构
 [生成文件的目录结构](https://github.com/imtaotao/icon-font/tree/master/icon-font/fonts)
+```
++-- root
+  +-- iconfont.eot
+  +-- iconfont.svg
+  +-- iconfont.ttf
+  +-- iconfont.woff
+  +-- demo.html
+  +-- style.css
+```

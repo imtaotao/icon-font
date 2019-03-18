@@ -50,7 +50,7 @@ function setIconAndGetInfor (font, name, unicode, opts, map) {
     if (typeof _name === 'string') {
       if (_name === name) warn(`the ${name} already exists, please change your name.`)
       // copy svg 字符串
-      cfg.svg = opts.svg
+      cfg.svg = cfg.svg || opts.svg
       const infor = setIconAndGetInfor(font, _name, unicode, cfg)
       map.push(infor)
     }
@@ -58,7 +58,7 @@ function setIconAndGetInfor (font, name, unicode, opts, map) {
 
   // clone 的情况下不调用钩子
   if (map) {
-    const data = callHooks('before', name, clone)
+    const data = callHooks('before', name, clone, svg)
     if (data && typeof data === 'object') {
       Object.assign(opts, data)
     }

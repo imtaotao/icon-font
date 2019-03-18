@@ -5,14 +5,6 @@ const fontCarrier = require('font-carrier')
 const genTemplate = require('./gen-template')
 const { warn, deleteDir, getPathColor, getLegalPath } = require('./utils')
 
-// 调用钩子函数
-function callHooks (hookname, data, obj) {
-  const fn = create[hookname]
-  return typeof fn === 'function'
-    ? fn(data, obj)
-    : null
-}
-
 // 得到字体的 svg string
 function getSingleFont (from, type, file) {
   return new Promise(resolve => {
@@ -57,8 +49,8 @@ function setIconAndGetInfor (font, name, unicode, opts, map) {
   }
 
   // clone 的情况下不调用钩子
-  if (map) {
-    const data = callHooks('before', name, clone, opts.svg)
+  if (map && typeof create.before === 'function') {
+    const data = create.before(name, clone, opts.svg)
     if (data && typeof data === 'object') {
       Object.assign(opts, data)
     }

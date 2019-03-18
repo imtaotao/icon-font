@@ -1,4 +1,5 @@
 ## 一个生成 IconFont 的脚本
+[![NPM version][npm-image]][npm-url]
 这个是一个生成 iconfont 的脚本，使用很简单，他只有两个 `api` ，`1 个钩子函数`，以及 `6 个配置项`，但是大部分情况下，你只需要两个 api 就能完成所有的工作。使用时，你只需要将生成的 `css` 文件引入你的项目工程中就可以了，就像下面这样
 ```html
 <link rel="stylesheet" href="./fonts/style.css">
@@ -61,3 +62,6 @@ remove(airmUrl).then(() => {
 
 ## 依赖
 [font-carrier](https://github.com/purplebamboo/font-carrier)
+
+[npm-image]: https://img.shields.io/npm/v/@rustle/icon-font.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@rustle/icon-font
